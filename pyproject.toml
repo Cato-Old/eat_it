@@ -8,6 +8,7 @@ packages = [{include = "eat_it"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
+flask = "^2.2.2"
 
 
 [build-system]
