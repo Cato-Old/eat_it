@@ -1,6 +1,7 @@
 from flask import Flask, Response, request, jsonify
 
 from eat_it.controllers import AddUserController, AddUserRequest
+from eat_it.repositories import UserRepository
 
 app = Flask(__name__)
 
@@ -13,7 +14,8 @@ def ping():
 @app.post('/users')
 def create_user() -> Response:
     user = request.json
-    controller = AddUserController()
+    repository = UserRepository()
+    controller = AddUserController(repository=repository)
     add_user_request = AddUserRequest(user=user)
     controller.add(request=add_user_request)
     return jsonify(user)

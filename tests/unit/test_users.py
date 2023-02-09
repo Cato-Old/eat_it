@@ -3,7 +3,8 @@ import json
 import pytest
 
 from eat_it.app import app
-from eat_it.app import create_user, update_user
+from eat_it.app import create_user
+from eat_it.app import update_user
 
 
 @pytest.fixture
