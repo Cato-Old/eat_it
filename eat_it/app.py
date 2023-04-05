@@ -1,7 +1,9 @@
 from flask import Flask, Response, request, jsonify
 
-from eat_it.controllers import AddUserController, AddUserRequest
+from eat_it.controllers import AddUserController, AddUserRequest, GetUserController
 from eat_it.repositories import UserRepository
+
+
 
 app = Flask(__name__)
 
@@ -26,3 +28,12 @@ def update_user() -> Response:
     user = request.json
     return jsonify(user)
 
+
+@app.get('/users/<id>')
+def get_user(id) -> Response:
+    controller = GetUserController()
+    try:
+        controller.get(id=id)
+    except NotImplementedError:
+        pass
+    return Response(status=501)

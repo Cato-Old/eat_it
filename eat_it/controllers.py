@@ -1,5 +1,7 @@
 from dataclasses import dataclass
 
+import pytest
+
 from eat_it.repositories import UserRepository
 
 
@@ -14,3 +16,8 @@ class AddUserController:
 
     def add(self, request: AddUserRequest) -> None:
         print(request.user)
+
+
+class GetUserController:
+    def get(self, id: int):
+        raise NotImplementedError

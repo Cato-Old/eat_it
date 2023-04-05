@@ -4,7 +4,7 @@ from unittest.mock import Mock
 import pytest
 from _pytest.capture import CaptureFixture
 
-from eat_it.controllers import AddUserController, AddUserRequest
+from eat_it.controllers import AddUserController, AddUserRequest, GetUserController
 from eat_it.repositories import UserRepository
 
 
@@ -48,3 +48,9 @@ def test_calls_add_in_repository_on_calling_controller(
 def test_add_user_request_has_user_attribute(payload: dict) -> None:
     request = AddUserRequest(user=payload)
     assert request.user
+
+
+def test_get_user_controller() -> None:
+    controller = GetUserController()
+    with pytest.raises(NotImplementedError):
+        controller.get(1)

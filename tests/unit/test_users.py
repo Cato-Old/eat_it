@@ -5,6 +5,7 @@ import pytest
 from eat_it.app import app
 from eat_it.app import create_user
 from eat_it.app import update_user
+from eat_it.app import get_user
 
 
 @pytest.fixture
@@ -30,3 +31,8 @@ def test_update_user_returns_user(payload: dict) -> None:
     with app.test_request_context(method="PUT", path="/users", json=payload):
         result = update_user()
     assert result.json == payload
+
+
+def test_get_user_returns_501() -> None:
+    result = get_user(1)
+    assert result.status_code == 501

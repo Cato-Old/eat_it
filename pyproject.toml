@@ -9,6 +9,8 @@ packages = [{include = "eat_it"}]
 [tool.poetry.dependencies]
 python = "^3.11"
 flask = "^2.2.2"
+sqlalchemy = {extras = ["psycopg2"], version = "^2.0.8"}
+psycopg2 = "^2.9.6"
 
 
 [tool.poetry.group.dev.dependencies]
