@@ -2,8 +2,7 @@ from flask import Flask, Response, request, jsonify
 
 from eat_it.controllers import AddUserController, AddUserRequest, GetUserController
 from eat_it.repositories import UserRepository
-
-
+from eat_it.views import UserView
 
 app = Flask(__name__)
 
@@ -29,11 +28,15 @@ def update_user() -> Response:
     return jsonify(user)
 
 
-@app.get('/users/<id>')
-def get_user(id) -> Response:
-    controller = GetUserController()
-    try:
-        controller.get(id=id)
-    except NotImplementedError:
-        pass
-    return Response(status=501)
+# @app.get('/users/<id>')
+# def get_user(id) -> Response:
+#     controller = GetUserController()
+#     try:
+#         controller.get(id=id)
+#     except NotImplementedError:
+#         pass
+#     return Response(status=501)
+
+
+user_view = UserView.as_view("user_view", controller=GetUserController())
+app.add_url_rule("/users/<id>", view_func=user_view)
