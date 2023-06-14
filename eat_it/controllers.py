@@ -12,10 +12,10 @@ class AddUserRequest:
 
 class AddUserController:
     def __init__(self, repository: UserRepository) -> None:
-        pass
+        self._repository = repository
 
     def add(self, request: AddUserRequest) -> None:
-        print(request.user)
+        self._repository.add()
 
 
 class GetUserController:
